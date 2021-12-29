@@ -6,12 +6,12 @@ import "swiper/css";
 
 const HeroBanner = ({ id, title, movies }) => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setWindowWidth(window.innerWidth);
-    });
-  });
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // useEffect(() => {
+  //   window.addEventListener("resize", () => {
+  //     setWindowWidth(window.innerWidth);
+  //   });
+  // });
   return (
     <>
       <div className="heroBannersContainer">

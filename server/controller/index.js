@@ -18,6 +18,7 @@ module.exports = (req, res) => {
     res.send(response);
     return;
   }
+  
   const pageIndex = parseInt(req.query.next);
   if (isNaN(pageIndex)) {
     response.errorCode = "INVALID_NEXT_PARAM";
@@ -28,7 +29,6 @@ module.exports = (req, res) => {
   }
 
   const pageSize = parseInt(req.query.pageSize);
-
   if (isNaN(pageSize)) {
     response.errorCode = "INVALID_PAGE_SIZE_PARAM";
     response.message = "page size param is invalid";

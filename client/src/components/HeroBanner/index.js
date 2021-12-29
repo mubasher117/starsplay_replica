@@ -14,7 +14,7 @@ const HeroBanner = ({ id, title, movies }) => {
   });
   return (
     <>
-      <div className="heroBannerContainer">
+      <div className="heroBannersContainer">
         <Swiper
           key={`${id}_${title}`}
           centeredSlides={true}
@@ -26,9 +26,6 @@ const HeroBanner = ({ id, title, movies }) => {
           }}
         >
           {movies.map((movie, index) => {
-            console.log(windowWidth)
-            console.log(windowWidth * 0.5)
-            console.log(windowWidth * 0.25)
             return (
               <>
                 <SwiperSlide
@@ -42,7 +39,7 @@ const HeroBanner = ({ id, title, movies }) => {
                 >
                   <img
                     key={`${movie.titleId}_img`}
-                    src={movie.thumbnails["thumb-677x474"]?.url}
+                    src={movie.thumbnails["thumb-613x1536"]?.url}
                     className="heroBannerThumbnail"
                     alt={movie.title}
                   />

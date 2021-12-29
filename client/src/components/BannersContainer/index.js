@@ -1,30 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { getData } from "../../api/data";
-import Banner from "../Banner";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { DotLineLoader } from "react-inline-loaders";
+import { getData } from "../../api/data";
+const Banner = lazy(() => import("../Banner"));
+const HeroBanner = lazy(() => import("../HeroBanner"));
 
-const BannerContainer = () => {
+const BannersContainer = () => {
   const [content, setContent] = useState();
   const [isLoading, setIsLoading] = useState();
   useEffect(() => {
+    setIsLoading(true);
     getData(0, 3)
       .then((res) => {
         setContent(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false);
         alert("Internal Server Error");
       });
   }, []);
   const scrollEnd = () => {
     setIsLoading(true);
-    getData(content.nextPage,3)
+    getData(content.nextPage, 3)
       .then((res) =>
         setContent((prevContent) => {
           let tempContent = { ...prevContent };
           tempContent.titles = tempContent.titles?.concat(...res.data.titles);
           tempContent.nextPage = res.data.nextPage;
-          console.log(tempContent);
           setContent(tempContent);
           setIsLoading(false);
         })
@@ -45,15 +48,29 @@ const BannerContainer = () => {
   return (
     <>
       <div>
+        {content?.titles?.length > 0 && (
+          <Suspense fallback={<DotLineLoader />}>
+            <HeroBanner
+              key={content?.titles[0].moduleId}
+              id={content?.titles[0].moduleId}
+              title={content?.titles[0].title}
+              movies={content?.titles[0].layoutTitles?.titles}
+            />
+          </Suspense>
+        )}
+      </div>
+      <div>
         {content?.titles?.map((title, index) => {
           if (title.moduleType !== "HERO") {
             return (
-              <Banner
-                key={title.moduleId}
-                id={title.moduleId}
-                title={title.title}
-                movies={title.layoutTitles?.titles}
-              />
+              <Suspense fallback={<DotLineLoader />}>
+                <Banner
+                  key={title.moduleId}
+                  id={title.moduleId}
+                  title={title.title}
+                  movies={title.layoutTitles?.titles}
+                />
+              </Suspense>
             );
           }
         })}
@@ -62,4 +79,4 @@ const BannerContainer = () => {
     </>
   );
 };
-export default BannerContainer;
+export default BannersContainer;

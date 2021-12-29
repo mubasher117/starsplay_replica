@@ -8,7 +8,7 @@ SwiperCore.use([Pagination]);
 const Banner = ({ id, title, movies }) => {
   return (
     <>
-      <div className="bannerContainer">
+      <div className="BannersContainer">
         <div className="bannerTitle">{title}</div>
         {movies && (
           <Swiper

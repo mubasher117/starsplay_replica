@@ -1,11 +1,7 @@
-.heroBannersContainer {
-  padding: 0px;
+.activeSlide{
+  opacity: 1;
 }
-.heroBannerThumbnail {
-  width: -webkit-fill-available;
-  height: 200px;
-}
-.heroBannerThumbnailActive{
-  width: 100%;
-  height: 100%;
+.inActiveSlide{
+  opacity: 0.3;
+  color: "black",
 }

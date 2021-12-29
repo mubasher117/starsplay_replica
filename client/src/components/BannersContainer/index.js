@@ -24,13 +24,14 @@ const BannersContainer = () => {
     setIsLoading(true);
     getData(content.nextPage, 3)
       .then((res) =>
+     { console.log(res.config)
         setContent((prevContent) => {
           let tempContent = { ...prevContent };
           tempContent.titles = tempContent.titles?.concat(...res.data.titles);
           tempContent.nextPage = res.data.nextPage;
           setContent(tempContent);
           setIsLoading(false);
-        })
+        })}
       )
       .catch((err) => {
         console.log(err);

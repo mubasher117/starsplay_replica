@@ -19,7 +19,7 @@ const HeroBanner = ({ id, title, movies }) => {
           key={`${id}_${title}`}
           centeredSlides={true}
           spaceBetween={0}
-          slidesPerView={'auto'}
+          slidesPerView='auto'
           loop={true}
           onTransitionEnd={(e) => {
             setActiveSlide(e.realIndex );
@@ -32,7 +32,6 @@ const HeroBanner = ({ id, title, movies }) => {
             return (
               <>
                 <SwiperSlide
-                act
                   key={movie.titleId}
                   style={{
                     width: index === activeSlide ?  "50%" :  "25%",

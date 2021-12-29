@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./index.css";
 import "swiper/css";
-import "swiper/css/pagination"
 
 
 const HeroBanner = ({ id, title, movies }) => {
@@ -20,31 +19,31 @@ const HeroBanner = ({ id, title, movies }) => {
           key={`${id}_${title}`}
           centeredSlides={true}
           spaceBetween={0}
-          slidesPerView={3}
+          slidesPerView={'auto'}
           loop={true}
           onTransitionEnd={(e) => {
             setActiveSlide(e.realIndex );
           }}
         >
           {movies.map((movie, index) => {
+            console.log(windowWidth)
+            console.log(windowWidth * 0.5)
+            console.log(windowWidth * 0.25)
             return (
               <>
                 <SwiperSlide
+                act
                   key={movie.titleId}
-                  style={
-                    index === activeSlide
-                      ? { width: windowWidth * 0.5, heigth: 200 }
-                      : {
-                          width: windowWidth * 0.25,
-                          heigth: 200,
-                          opacity: 0.3,
-                          color: "black",
-                        }
-                  }
+                  style={{
+                    width: index === activeSlide ?  "50%" :  "25%",
+                    heigth: 200,
+                    opacity: index === activeSlide ? 1 : 0.3,
+                    color: "black",
+                  }}
                 >
                   <img
                     key={`${movie.titleId}_img`}
-                    src={movie.thumbnails["thumb-614x1536"]?.url}
+                    src={movie.thumbnails["thumb-677x474"]?.url}
                     className="heroBannerThumbnail"
                     alt={movie.title}
                   />

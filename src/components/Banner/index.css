@@ -1,0 +1,12 @@
+.bannerContainer {
+    padding: 20px;
+  }
+.bannerTitle{
+    color: white;
+    margin-bottom: 10px;
+}
+.thumbnail {
+    /* padding: 40px; */
+    width: 120px;
+    height: 180px;
+  }

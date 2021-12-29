@@ -1,4 +1,4 @@
 import API from ".";
-export const getData = (next) => {
-   return API.get(`/get_data/${next}`)
+export const getData = (next, pageSize) => {
+   return API.get(`/get_data/?next=${next}&pageSize=${pageSize}`)
 }

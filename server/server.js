@@ -6,9 +6,9 @@ const app = express()
 const port = 5000
 app.use(cors())
 
-app.get('/api/v1/get_data/:next', (req, res) => {
-  console.log("GOT GET REQUEST")
-    const pageIndex = parseInt(req.params.next)
+app.get('/api/v1/get_data', (req, res) => {
+    const pageIndex = parseInt(req.query.next)
+    const pageSize = pageIndex(req.query.pageSize)
     let rawData = fs.readFileSync(path.resolve(__dirname, 'homepage.json'));
     let data = JSON.parse(rawData)
     let response = {
@@ -18,7 +18,7 @@ app.get('/api/v1/get_data/:next', (req, res) => {
     if (pageIndex === 0){
        response.titles.push(data.titles[0])
     }
-    for(let i = pageIndex + 1 ; i < pageIndex + 3 + 1; ++i){
+    for(let i = pageIndex + 1 ; i < pageIndex + pageSize + 1; ++i){
         if (i >= data.titles.length){
             break;
         }

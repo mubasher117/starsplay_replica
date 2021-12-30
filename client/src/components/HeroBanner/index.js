@@ -23,35 +23,49 @@ const HeroBanner = ({ id, title, movies }) => {
             return (
               <>
                 <SwiperSlide key={movie.titleId}>
-                  <div>
-                    <img
-                      key={`${movie.titleId}_img`}
-                      width={"25%"}
-                      height={200}
-                      src={movie.thumbnails["thumb-613x1536"]?.url}
-                      className="inActiveSlide"
-                      alt={movie.title}
-                    />
-                    <img
-                      key={`${movie.titleId}_img`}
-                      width={"50%"}
-                      height={200}
-                      src={movies[nextIndex]?.thumbnails["thumb-613x1536"]?.url}
-                      className="activeSlide"
-                      alt={movie.title}
-                    />
-                    <img
-                      key={`${movie.titleId}_img`}
-                      width={"25%"}
-                      height={200}
-                      src={
-                        movies[nextExtraIndex]?.thumbnails["thumb-613x1536"]
-                          ?.url
-                      }
-                      className="inActiveSlide"
-                      alt={nextExtraIndex}
-                    />
-                  </div>
+                  {({isActive}) => {
+                    if (isActive){
+                      return <div>
+                      <img
+                        key={`${movie.titleId}_img`}
+                        width={"25%"}
+                        height={200}
+                        src={movie.thumbnails["thumb-613x1536"]?.url}
+                        className="inActiveSlide"
+                        alt={movie.title}
+                      />
+                      <img
+                        key={`${movie.titleId}_img`}
+                        width={"50%"}
+                        height={200}
+                        src={movies[nextIndex]?.thumbnails["thumb-613x1536"]?.url}
+                        className="activeSlide"
+                        alt={movie.title}
+                      />
+                      <img
+                        key={`${movie.titleId}_img`}
+                        width={"25%"}
+                        height={200}
+                        src={
+                          movies[nextExtraIndex]?.thumbnails["thumb-613x1536"]
+                            ?.url
+                        }
+                        className="inActiveSlide"
+                        alt={nextExtraIndex}
+                      />
+                    </div>
+                    }
+                    else{
+                      return <img
+                        key={`${movie.titleId}_img`}
+                        width={"25%"}
+                        height={200}
+                        src={movies[nextExtraIndex]?.thumbnails["thumb-613x1536"]?.url}
+                        className="inActiveSlide"
+                        alt={movie.title}
+                      />
+                    }
+                  }}
                 </SwiperSlide>
               </>
             );

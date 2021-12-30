@@ -4,6 +4,7 @@ module.exports = (req, res) => {
   let response = {
     success: false,
   };
+  // Validations
   if (!req.query.next) {
     response.errorCode = "MISSING_NEXT_PARAM";
     response.message = "next param is missing";

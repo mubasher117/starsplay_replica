@@ -1,0 +1,7 @@
+.activeSlide{
+  opacity: 1;
+}
+.inActiveSlide{
+  opacity: 0.3;
+  color: "black",
+}

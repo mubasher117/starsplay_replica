@@ -37,7 +37,7 @@ module.exports = (req, res) => {
     res.send(response);
     return;
   }
-
+  // File Handling
   let rawData = fs.readFileSync(
     path.resolve(__dirname, "../data/homepage.json")
   );
@@ -47,11 +47,12 @@ module.exports = (req, res) => {
     nextPage: pageIndex + 3,
     titles: [],
   };
-
+  
+  // Append hero banner to response
   if (pageIndex === 0) {
     response.titles.push(data.titles[0]);
   }
-
+  
   for (let i = pageIndex + 1; i < pageIndex + pageSize + 1; ++i) {
     if (i >= data.titles.length) {
       break;

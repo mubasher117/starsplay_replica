@@ -18,8 +18,6 @@ const HeroBanner = ({ id, title, movies }) => {
             let nextIndex = (index + 1) % movies.length;
             let nextExtraIndex =
               (((index + 1) % movies.length) + 1) % movies.length;
-            console.log(nextExtraIndex);
-
             return (
               <>
                 <SwiperSlide key={movie.titleId}>

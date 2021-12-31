@@ -7,34 +7,28 @@ SwiperCore.use([Pagination]);
 
 const Banner = ({ id, title, movies }) => {
   return (
-    <>
-      <div className="BannersContainer">
-        <div className="bannerTitle">{title}</div>
-        {movies && (
-          <Swiper
-            key={`${id}_${title}`}
-            slidesPerView={9}
-            spaceBetween={10}
-            loop={true}
-          >
-            {movies.map((movie, index) => {
-              return (
-                <>
-                  <SwiperSlide key={movie.titleId}>
-                    <img
-                      key={`${movie.titleId}_img`}
-                      src={movie.thumbnails["thumb-677x474"]?.url}
-                      className="thumbnail"
-                      alt={movie.title}
-                    />
-                  </SwiperSlide>
-                </>
-              );
-            })}
-          </Swiper>
-        )}
-      </div>
-    </>
+    <div className="BannersContainer">
+      <div className="bannerTitle">{title}</div>
+      {movies && (
+        <Swiper
+          slidesPerView={9}
+          spaceBetween={10}
+          loop={true}
+        >
+          {movies.map((movie, index) => {
+            return (
+              <SwiperSlide key={movie.titleId}>
+                <img
+                  src={movie.thumbnails["thumb-677x474"]?.url}
+                  className="thumbnail"
+                  alt={movie.title}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      )}
+    </div>
   );
 };
 

@@ -23,16 +23,15 @@ const BannersContainer = () => {
   const scrollEnd = () => {
     setIsLoading(true);
     getData(content.nextPage, 3)
-      .then((res) =>
-     { console.log(res.config)
+      .then((res) => {
         setContent((prevContent) => {
           let tempContent = { ...prevContent };
           tempContent.titles = tempContent.titles?.concat(...res.data.titles);
           tempContent.nextPage = res.data.nextPage;
           setContent(tempContent);
           setIsLoading(false);
-        })}
-      )
+        });
+      })
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
@@ -64,10 +63,14 @@ const BannersContainer = () => {
         {content?.titles?.map((title, index) => {
           if (title.moduleType !== "HERO") {
             return (
-              <Suspense fallback={<DotLineLoader />}>
+              <Suspense
+                key={`${title.moduleId}`}
+                fallback={<DotLineLoader />}
+              >
                 <Banner
                   key={title.moduleId}
                   id={title.moduleId}
+                  index={index}
                   title={title.title}
                   movies={title.layoutTitles?.titles}
                 />

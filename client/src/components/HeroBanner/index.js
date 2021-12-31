@@ -23,6 +23,7 @@ const HeroBanner = ({ id, title, movies }) => {
                 <SwiperSlide key={movie?.titleId}>
                   {({ isActive }) => (
                     <HeroTile
+                    key={`${movie.titleId}`}
                       movies={movies}
                       movie={movie}
                       nextIndex={nextIndex}
